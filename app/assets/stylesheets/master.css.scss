@@ -1,10 +1,36 @@
 body {
   font-family: 'ubuntumedium', sans-serif;
+  background: url("background.png");
 }
 
 h1 {
   font-family: 'abelregular', serif;
 }
+
+.navbar {
+  border:0px;
+  border-radius: 0;
+  background: #3B3B3B;
+  margin: 0px;
+}
+
+
+.navbar-default .navbar-brand {
+  color: #F7B733;
+}
+
+.navbar-default .navbar-brand:hover {
+  color: #F7B733;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #F7B733;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  color:white;
+}
+
 
 .title-container p {
   font-size: 20px;
@@ -30,7 +56,6 @@ h1 {
 .portfolio {
   text-align: center;
   padding: 20px;
-  background: url("background.png");
 }
 
 .portfolio h1 {
@@ -91,8 +116,27 @@ h1 {
   margin: 0;
 }
 
+.booyah-box {
+  margin-top: 20px;
+  -moz-box-shadow: 1px 1px 2px 0 #d0d0d0;
+  -webkit-box-shadow: 1px 1px 2px 0 #d0d0d0;
+  box-shadow: 1px 1px 2px 0 #d0d0d0;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
+  padding: 10px;
+}
+
+.booyah-box h2, .booyah-box h1 {
+  margin: 10px;
+}
+
 @media (max-width: 550px) {
   .title-container p {
     font-size: 15px;
   }
+}
+
+.clr {
+  clear:both;
 }

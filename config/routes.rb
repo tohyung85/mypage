@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root 'portfoliosites#index'
+  get 'blog', to: 'portfoliosites#blog'
+  resources :comments, only: [:create]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

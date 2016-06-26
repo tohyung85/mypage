@@ -1,0 +1,382 @@
+
+
+<h1>From Journeyman to Master</h1>
+
+<div class="booyah-box col-xs-10 col-xs-offset-1">
+  <h1>Simple Form Usage</h1>
+
+  <br/><br/>
+  <p>Simple form is an awesome tool which every web developer should have in his/her toolkit. The docs on the simple form site and support from the community is freely available as well.</p>
+
+  <p>Personally though, I prefer to have a one-pager listing the possible functions and usage of simple form to minimize searching through the docs.</p>
+
+  <p>In a way this should serve as a mini cheat sheet! So here goes...</p>
+
+  <h2>Step 1</h2>
+  <h3>Setting up the model object for use in your html pages</h3>
+  <p>Using the form to create a new entry:</p>
+  <p class="code col-xs-8 col-xs-offset-2">@model = Model.new</p>
+  <br class="clr"/>
+  <p>Using the form to edit an entry:</p>
+  <p class="code col-xs-8 col-xs-offset-2">@model = Model.find(params[:id])</p>
+  <br class="clr"/>
+
+  <h2>Step 2</h2>
+  <h3>Display form in the html page</h3>
+  <div class="code col-xs-8 col-xs-offset-2">
+    <p>&lt;%= simple_form_for @model, <span class="input-types">form_method: parameter</span> do |f| %&gt; </p>
+    <p>&nbsp&nbsp&nbsp &lt;%= f.<span class="input-types">input_type</span> :title , <span class="input-types">input_method:parameter</span> %&gt; </p>
+    <p>&lt;% end %&gt;</p>
+  </div>
+  <br class="clr"/>
+
+  <h2>Step 3</h2>
+  <h3>Replace portions in grey highlighting with appropriate form ethods, input types and input methods per below table</h3>  
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>form_method</th>
+        <th>parameter</th>
+        <th>Default</th>
+        <th>Remarks</th>
+      </tr>
+      <tr>
+        <td>url</td>
+        <td>preferred_path (check rake routes)</td>
+        <td>models_path</td>
+        <td>set url which form submits to</td>
+      </tr>
+      <tr>
+        <td>method</td>
+        <td>:post</td>
+        <td>:post if @model = Model.new</td>
+        <td>Determine HTTP request to send</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>:put</td>
+        <td>:put if @model = Model.new</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>:delete</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>defaults</td>
+        <td>{<span class="input-types">input_method: parameter</span>}</td>
+        <td>Refer to table 4</td>
+        <td><p>Set default input methods for all form input fields. </p><p>To set default input methods for all forms in app, modify simple_form.rb according to the docs</p></td>
+      </tr>
+    </tbody>
+  </table>
+  <p><i>Table 1: Form methods and parameters</i></p>
+  <p><i>*Refer to table 4 for input_methods and parameters</i></p>
+
+  <br/><br/><br/>
+
+  <table class="table">
+      <tbody>
+        <tr>
+          <th>Types</th>
+          <th>Remarks</th>
+        </tr>
+        <tr>
+          <td>input</td>
+          <td>
+            <p>Simple form automatically determines type based on data type in model database</p>
+            <p>Refer to docs for more details</p>
+          </td>
+        </tr>
+        <tr>
+          <td>input_field</td>
+          <td>Removes default input wrapper divs</td>
+        </tr>
+        <tr>
+          <td>association</td>
+          <td>
+            <p>sets up associations between input fields</p>
+            <p>Workable if models have associations set up between them. E.g(a belongs to b, b has_many a)</p>
+          </td>
+        </tr>
+        <tr>
+          <td>submit</td>
+          <td>Creates submission button</td>
+        </tr>
+        <tr>
+          <td>Others</td>
+          <td>Refer to table 3</td>
+        </tr>
+      </tbody>
+    </table>
+    <p><i>Table 2: Input types</i></p>
+
+<br/><br/><br/>
+
+    <table class="table"><thead>
+<tr>
+<th>Mapping</th>
+<th align="left">Generated HTML Element</th>
+<th align="left">Database Column Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>boolean</td>
+<td align="left">input[type=checkbox]</td>
+<td align="left">boolean</td>
+</tr>
+<tr>
+<td>string</td>
+<td align="left">input[type=text]</td>
+<td align="left">string</td>
+</tr>
+<tr>
+<td>email</td>
+<td align="left">input[type=email]</td>
+<td align="left">string with name =~ /email/</td>
+</tr>
+<tr>
+<td>url</td>
+<td align="left">input[type=url]</td>
+<td align="left">string with name =~ /url/</td>
+</tr>
+<tr>
+<td>tel</td>
+<td align="left">input[type=tel]</td>
+<td align="left">string with name =~ /phone/</td>
+</tr>
+<tr>
+<td>password</td>
+<td align="left">input[type=password]</td>
+<td align="left">string with name =~ /password/</td>
+</tr>
+<tr>
+<td>search</td>
+<td align="left">input[type=search]</td>
+<td align="left">-</td>
+</tr>
+<tr>
+<td>uuid</td>
+<td align="left">input[type=text]</td>
+<td align="left">uuid</td>
+</tr>
+<tr>
+<td>text</td>
+<td align="left">textarea</td>
+<td align="left">text</td>
+</tr>
+<tr>
+<td>file</td>
+<td align="left">input[type=file]</td>
+<td align="left">string responding to file methods</td>
+</tr>
+<tr>
+<td>hidden</td>
+<td align="left">input[type=hidden]</td>
+<td align="left">-</td>
+</tr>
+<tr>
+<td>integer</td>
+<td align="left">input[type=number]</td>
+<td align="left">integer</td>
+</tr>
+<tr>
+<td>float</td>
+<td align="left">input[type=number]</td>
+<td align="left">float</td>
+</tr>
+<tr>
+<td>decimal</td>
+<td align="left">input[type=number]</td>
+<td align="left">decimal</td>
+</tr>
+<tr>
+<td>range</td>
+<td align="left">input[type=range]</td>
+<td align="left">-</td>
+</tr>
+<tr>
+<td>datetime</td>
+<td align="left">datetime select</td>
+<td align="left">datetime/timestamp</td>
+</tr>
+<tr>
+<td>date</td>
+<td align="left">date select</td>
+<td align="left">date</td>
+</tr>
+<tr>
+<td>time</td>
+<td align="left">time select</td>
+<td align="left">time</td>
+</tr>
+<tr>
+<td>select</td>
+<td align="left">select</td>
+<td align="left">belongs_to/has_many/has_and_belongs_to_many associations</td>
+</tr>
+<tr>
+<td>radio_buttons</td>
+<td align="left">collection of input[type=radio]</td>
+<td align="left">belongs_to associations</td>
+</tr>
+<tr>
+<td>check_boxes</td>
+<td align="left">collection of input[type=checkbox]</td>
+<td align="left">has_many/has_and_belongs_to_many associations</td>
+</tr>
+<tr>
+<td>country</td>
+<td align="left">select (countries as options)</td>
+<td align="left">string with name =~ /country/. Note: this requires Country Select Gem to be Installed</td>
+</tr>
+<tr>
+<td>time_zone</td>
+<td align="left">select (timezones as options)</td>
+<td align="left">string with name =~ /time_zone/</td>
+</tr>
+</tbody></table>
+<p><i>Table 3: More Input types</i></p>
+
+<br/><br/><br/>
+
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>input_method</th>
+        <th>parameter</th>
+        <th>Default</th>
+        <th>Remarks</th>
+      </tr>
+      <tr>
+        <td>label</td>
+        <td>string / boolean</td>
+        <td>database field name</td>
+        <td>set up label</td>
+      </tr>
+      <tr>
+        <td>hint</td>
+        <td>string / boolean</td>
+        <td>false</td>
+        <td>Provides text after input field as hint</td>
+      </tr>
+      <tr>
+        <td>placeholder</td>
+        <td>string / boolean</td>
+        <td>false</td>
+        <td>Provides placeholder in input field</td>
+      </tr>
+      <tr>
+        <td>error</td>
+        <td>string / boolean</td>
+        <td>displays as per validation in model</td>
+        <td>Message to display when there is an error</td>
+      </tr>
+      <tr>
+        <td>label_html</td>
+        <td>{<span class="input-types">html_input: parameter</span>}</td>
+        <td>None</td>
+        <td><p>Append html to input label div  </p><p>typically <span class="input-types">class : "myClass"<span> or <span class="input-types">id : "myID"<span></p></td>
+      </tr>
+      <tr>
+        <td>input_html</td>
+        <td>{<span class="input-types">html_input: parameter</span>}</td>
+        <td>None</td>
+        <td><p>Append html to input div  </p><p>typically <span class="input-types">class : "myClass"<span> or <span class="input-types">id : "myID"<span></p></td>
+      </tr>
+      <tr>
+        <td>label_html</td>
+        <td>{<span class="input-types">html_input: parameter</span>}</td>
+        <td>None</td>
+        <td><p>Append html to wrapper div (Includes both input and label)  </p><p>typically <span class="input-types">class : "myClass"<span> or <span class="input-types">id : "myID"<span></p></td>
+      </tr>
+      <tr>
+        <td>error_html</td>
+        <td>{<span class="input-types">html_input: parameter</span>}</td>
+        <td>None</td>
+        <td><p>Append html to error div (Includes both input and label)  </p><p>typically <span class="input-types">class : "myClass"<span> or <span class="input-types">id : "myID"<span></p></td>
+      </tr>
+      <tr>
+        <td>as</td>
+        <td>{<span class="input-types">:input_type</span>}</td>
+        <td>per database model, refer to table 3</td>
+        <td><p>Override default input type.</p><p>E.g the input can allow a text area for a string by doing as: :text</p></td>
+      </tr>
+      <tr>
+        <td>required</td>
+        <td>boolean</td>
+        <td>Per database model validation</td>
+        <td>Overried validation requirement indicated in database model</td>
+      </tr>
+      <tr>
+        <td>disabled</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>disable input field</td>
+      </tr>
+      <tr>
+        <td>checked_value</td>
+        <td>boolean</td>
+        <td>true</td>
+        <td>Set value of input field when checked. for boolean inputs only</td>
+      </tr>
+      <tr>
+        <td>unchecked_value</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>Set value of input field when unchecked. for boolean inputs only</td>
+      </tr>
+      <tr>
+        <td>collection</td>
+        <td>range or array</td>
+        <td>-</td>
+        <td>Converts input type to selection by default. Applicable for radio buttons and checkboxes as well</td>
+      </tr>
+      <tr>
+        <td>label_method</td>
+        <td>lambda/Proc</td>
+        <td>-</td>
+        <td>Method to retrieve label from collection</td>
+      </tr>
+      <tr>
+        <td>value_method</td>
+        <td>lambda/Proc</td>
+        <td>-</td>
+        <td>Method to retrieve value from collection</td>
+      </tr>
+      <tr>
+        <td>prompt</td>
+        <td>string</td>
+        <td>none</td>
+        <td>Gives a prompt. E.g "Please select a country". For selection input types only.</td>
+      </tr>
+      <tr>
+        <td>selected</td>
+        <td>value</td>
+        <td>none</td>
+        <td>Selects by a component by default. Applicable for selection, radio and checkboxes</td>
+      </tr>
+      <tr>
+        <td>priority</td>
+        <td>array or component</td>
+        <td>none</td>
+        <td>Prioritizes a component. Applicable for selection.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><i>Table 4: Input methods and parameters</i></p>
+</div>
+
+<br/><br/>  
+
+<h2>Comments</h2>
+
+<%= simple_form_for @comment, url: comments_path do |f| %>
+  <%= f.input :title %>
+  <%= f.input :content, label: "What are your comments?" %>
+  <%= f.input :poster_name, label: "Your name?" %>
+  <%= f.submit 'Create Comment', class: 'btn btn-primary' %>
+<% end %>
+

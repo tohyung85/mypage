@@ -9,13 +9,51 @@
 </head>
 <body>
 
+<div class="site">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href=<%= root_path %>>
+          Joshua
+        </a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="#"><span class="glyphicon glyphicon-plus"></span>Add Place</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to 'Blog', blog_path %></li>
+            <li><%= link_to 'My Profile', "#"%></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+<% if notice.present? %>
+  <p class="notice alert-info"><%= notice %></p>
+<% end %>
+<% if alert.present? %>
+  <p class="alert alert-danger"><%= alert %></p>
+<% end %>
+
 <%= yield %>
 
-<br/><br/>
+</div>
 
-<footer class="footer">
+<br class="clr"/><br/>
+
+<footer id="footer">
     <div class="col-xs-12 footer_comment">
-      More projects by <a href="https://github.com/tohyung85">Joshua</a>
+      More projects by me on<a href="https://github.com/tohyung85"> Github</a>
       <br class="clear"/>
       Check out <a href="http://www.thefirehoseproject.com/">Firehose Project</a> where I learned my skills!
   </div>
