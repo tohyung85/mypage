@@ -370,13 +370,28 @@
 </div>
 
 <br/><br/>  
-
+ 
+<div class= "col-xs-10 col-xs-offset-1">
 <h2>Comments</h2>
 
 <%= simple_form_for @comment, url: comments_path do |f| %>
   <%= f.input :title %>
   <%= f.input :content, label: "What are your comments?" %>
   <%= f.input :poster_name, label: "Your name?" %>
+</br>
   <%= f.submit 'Create Comment', class: 'btn btn-primary' %>
 <% end %>
 
+<% @comments.each do |comment| %>
+<div class="col-xs-10 comment col-xs-offset-1">
+      <blockquote>      
+        <h3><%= comment.title %><h3>
+          <br/>
+        <p><%= comment.content %></p>
+      </br>
+        <small class="pull-right"><%= comment.poster_name %></small>
+        <br/>
+      </blockquote>
+    </div>
+<% end %>
+</div>

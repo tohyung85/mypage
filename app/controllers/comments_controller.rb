@@ -1,7 +1,12 @@
 class CommentsController < ApplicationController
   def create
-    Comment.create(comment_params)
-    redirect_to blog_path
+    @comment = Comment.create(comment_params)
+    if @comment.valid?
+      redirect_to blog_path
+    else
+      @comments = Comment.all
+      render 'portfoliosites/blog', status: :unprocessable_entity
+    end
   end
 
   private

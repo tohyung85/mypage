@@ -1,0 +1,36 @@
+blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  width: 100%;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+blockquote p {
+  display: inline;
+}
+
+.comment_title {
+  margin: 0;
+}
+
+.index-comment {
+  color: black;
+}
+
+.comment h3{
+  font-size: 18px; 
+  margin: 0px;
+}
+
+.comment p{
+  font-size: 14px; 
+}
